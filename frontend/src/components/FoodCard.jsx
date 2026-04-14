@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import API_URL from "../api.js";
 dayjs.extend(relativeTime);
 
 const FoodCard = ({ food, onClaim, onDelete }) => {
@@ -12,7 +13,7 @@ const FoodCard = ({ food, onClaim, onDelete }) => {
   const handleClaim = async () => {
     const claimedBy = localStorage.getItem("foodbridge_user");
     try {
-      await axios.patch(`http://localhost:5000/api/foods/${food._id}/claim`, {
+      await axios.patch(`${API_URL}/foods/${food._id}/claim`, {
         claimedBy,
       });
       onClaim();
@@ -25,7 +26,7 @@ const FoodCard = ({ food, onClaim, onDelete }) => {
     if (!window.confirm("Are you sure you want to delete this listing?"))
       return;
     try {
-      await axios.delete(`http://localhost:5000/api/foods/${food._id}`);
+      await axios.delete(`${API_URL}/foods/${food._id}`);
       onDelete();
     } catch (error) {
       toast.error("Error deleting listing. Please try again.");

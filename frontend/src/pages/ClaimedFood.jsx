@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import API_URL from '../api.js'
 
 const ClaimedFood = () => {
 
@@ -11,7 +12,7 @@ const ClaimedFood = () => {
   const fetchClaimedFoods=async()=>{
     
       try {
-        const res=await axios.get('http://localhost:5000/api/foods')
+        const res=await axios.get(`${API_URL}/foods`)
 
         const myClaimed=res.data.filter(
           food=> food.isClaimed && food.claimedBy===userName

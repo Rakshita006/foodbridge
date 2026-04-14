@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import FoodCard from "../components/FoodCard.jsx";
 import toast from "react-hot-toast";
+import API_URL from "../api.js";
 
 const CATEGORIES = ['All', 'Cooked Meal', 'Vegetables', 'Fruits', 'Packaged', 'Beverages', 'Other'];
 
@@ -13,7 +14,7 @@ const Home = () => {
 
   const fetchFoods = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/foods`);
+      const res = await axios.get(`${API_URL}/foods`);
       setFoods(res.data);
     } catch (error) {
       toast.error("Error fetching food listings.");

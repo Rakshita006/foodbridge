@@ -3,6 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import toast from 'react-hot-toast';
+import API_URL from '../api.js';
 dayjs.extend(relativeTime);
 
 
@@ -14,7 +15,7 @@ const MyPosts = () => {
 
   const fetchMyPosts=async()=>{
       try {
-        const res=await axios.get(`http://localhost:5000/api/foods`)
+        const res=await axios.get(`${API_URL}/foods`)
         const myPosts=res.data.filter(food=>food.postedBy===userName)
         setMyFoods(myPosts)
       } catch (error) {
@@ -31,7 +32,7 @@ const MyPosts = () => {
   const handleDelete=async(id)=>{
     if (!window.confirm('Are you sure you want to delete this listing?')) return;
     try {
-     await axios.delete(`http://localhost:5000/api/foods/${id}`) 
+     await axios.delete(`${API_URL}/foods/${id}`) 
      toast.success('Post deleted successfully!')
      fetchMyPosts()
     } catch (error) {

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api.js";
 
 const PostFood = ({ userName }) => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const PostFood = ({ userName }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/foods", {
+      await axios.post(`${API_URL}/foods`, {
         ...formData,
         postedBy: userName,
       });

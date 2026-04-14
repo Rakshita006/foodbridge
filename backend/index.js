@@ -8,7 +8,15 @@ dotenv.config()
 
 const app=express()
 
-app.use(cors())
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'https://foodbridge-green.vercel.app'
+  ],
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json())
 
 app.get('/',(req,res)=>{
