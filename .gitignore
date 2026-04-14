@@ -1,0 +1,15 @@
+# Root
+node_modules/
+
+# Server
+server/node_modules/
+server/.env
+
+# Client
+client/node_modules/
+client/build/
+client/.env
+
+# General
+.DS_Store
+*.log
